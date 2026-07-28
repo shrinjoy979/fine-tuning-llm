@@ -1,0 +1,17 @@
+[
+    {
+      "instruction": "Translate English to French",
+      "input": "Hello",
+      "output": "Bonjour"
+    },
+    {
+      "instruction": "Translate English to French",
+      "input": "Good Morning",
+      "output": "Bonjour"
+    },
+    {
+      "instruction": "Translate English to French",
+      "input": "Thank you",
+      "output": "Merci"
+    }
+  ]
