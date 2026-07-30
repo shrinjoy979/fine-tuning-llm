@@ -37,3 +37,33 @@ def formatting(example):
     }
 
 dataset = dataset.map(formatting)
+
+# LoRA configuration
+peft_config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM"
+)
+
+training_args = TrainingArguments(
+    output_dir="output",
+    per_device_train_batch_size=1,
+    num_train_epochs=3,
+    learning_rate=2e-4,
+    logging_steps=1,
+    save_strategy="epoch"
+)
+
+trainer = SFTTrainer(
+    model=model,
+    train_dataset=dataset["train"],
+    peft_config=peft_config,
+    args=training_args,
+    processing_class=tokenizer,
+)
+
+trainer.train()
+
+trainer.save_model("fine_tuned_model")
